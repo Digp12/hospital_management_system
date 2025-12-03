@@ -38,6 +38,6 @@ public class StaffServiceImpl implements StaffService {
 
     @Override
     public boolean deleteStaff(Staff staff) {
-        return s;
+        return false;
     }
 }
