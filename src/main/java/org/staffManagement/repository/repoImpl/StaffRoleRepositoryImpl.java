@@ -29,6 +29,24 @@ public class StaffRoleRepositoryImpl extends DbConfiguration implements StaffRol
 
     @Override
     public StaffRole getStaffRoleById(int id) {
+        try {
+            preparedStatement = connection.prepareStatement("select * from staffrole where r_id=?");
+            preparedStatement.setInt(1, id);
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                StaffRole staffRole = new StaffRole();
+                staffRole.setRole(resultSet.getString("r_name"));
+                staffRole.setSr_id(resultSet.getInt("r_id"));
+                return staffRole;
+
+
+            }
+            else {
+                return null;
+            }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
         return null;
     }
 
@@ -68,5 +86,26 @@ public class StaffRoleRepositoryImpl extends DbConfiguration implements StaffRol
             System.out.println(e.getMessage());
         }
         return false;
+    }
+
+    @Override
+    public StaffRole getStaffRoleByName(String name) {
+        try{
+            preparedStatement=connection.prepareStatement("select * from staffrole where r_name=?");
+            preparedStatement.setString(1, name);
+            resultSet = preparedStatement.executeQuery();
+
+            if(resultSet.next()){
+                StaffRole staffRole = new StaffRole();
+                staffRole.setRole(resultSet.getString("r_name"));
+                staffRole.setSr_id(resultSet.getInt("r_id"));
+                return staffRole;
+            }else {
+                return null;
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 }

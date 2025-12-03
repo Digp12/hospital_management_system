@@ -32,4 +32,16 @@ public class DeptServiceImpl implements DeptService {
 		return deptRepository.updateDept(dept);
 	}
 
+    @Override
+    public Department getDeptById(int deptId) {
+
+        return null;
+    }
+
+    @Override
+    public Department getDeptByName(String deptName) {
+        return null;
+    }
+
+
 }

@@ -31,11 +31,6 @@ public class DbConfiguration {
 		
 		Class.forName(driver);
 		connection = DriverManager.getConnection(url,userName,password);
-		if(connection != null) {
-			System.out.println("Connection Created...!");
-		}else {
-			System.out.println("Connection not created...!");
-		}
 		}catch (Exception e) {
 			// TODO: handle exception
 			System.out.println("Error is : "+e);

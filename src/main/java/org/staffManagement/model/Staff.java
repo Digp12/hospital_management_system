@@ -12,13 +12,12 @@ import java.util.Date;
 public class Staff {
     private int staff_id;
     private String name;
-    private String gender;
+    private Gender gender;
     private String phone;
     private String email;
     private String address;
     private Date joinDate;
-    private String status;
+    private Status status;
     private Department department;
     private StaffRole staffRole;
-
 }

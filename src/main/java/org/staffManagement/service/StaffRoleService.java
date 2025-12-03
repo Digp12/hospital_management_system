@@ -10,4 +10,6 @@ public interface StaffRoleService {
     public boolean addStaffRole(StaffRole staffRole);
     public boolean updateStaffRole(StaffRole staffRole);
     public boolean deleteStaffRole(int id);
+    public StaffRole getStaffRoleByName(String name);
+
 }

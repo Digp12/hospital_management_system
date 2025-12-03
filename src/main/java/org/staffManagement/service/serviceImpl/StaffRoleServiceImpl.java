@@ -34,4 +34,9 @@ public class StaffRoleServiceImpl implements StaffRoleService {
     public boolean deleteStaffRole(int id) {
         return staffRoleRepository.deleteStaffRole(id);
     }
+
+    public StaffRole getStaffRoleByName(String name){
+        return staffRoleRepository.getStaffRoleByName(name);
+    }
+
 }

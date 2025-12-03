@@ -72,4 +72,45 @@ public class DeptRepositoryImpl extends DbConfiguration implements DeptRepositor
 		return false;
 	}
 
+    @Override
+    public Department getDeptById(int deptId) {
+        try{
+
+            preparedStatement = connection.prepareStatement("select * from department where d_id=?");
+            preparedStatement.setInt(1, deptId);
+            resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()) {
+                Department department = new Department();
+                department.setD_id(resultSet.getInt("d_id"));
+                department.setName(resultSet.getString("d_name"));
+                department.setDescriptin(resultSet.getString("d_desc"));
+                return department;
+            }else return null;
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
+    @Override
+    public Department getDeptByName(String deptName) {
+        try{
+            preparedStatement = connection.prepareStatement("select * from department where d_name=?");
+            preparedStatement.setString(1, deptName);
+            resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()) {
+                Department department = new Department();
+                department.setD_id(resultSet.getInt("d_id"));
+                department.setName(resultSet.getString("d_name"));
+                department.setDescriptin(resultSet.getString("d_desc"));
+                return department;
+
+            }else return null;
+
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
 }
