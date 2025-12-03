@@ -1,6 +1,7 @@
 package org.staffManagement.clientApp;
 import java.util.*;
 
+import org.staffManagement.model.StaffRole;
 import org.staffManagement.service.AdminLoginService;
 import org.staffManagement.service.serviceImpl.AdminLoginServiceImpl;
 
@@ -39,7 +40,8 @@ public class ClientApplication {
 							dpClient.deptOps();
 							break;
 						case 2:
-
+                            StaffRoleClient staffroleclient = new StaffRoleClient();
+                            staffroleclient.StaffRoleOps();
 							break;
 						case 3:
 
