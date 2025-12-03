@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.staffManagement.model.Department;
 import org.staffManagement.repository.DeptRepository;
-import org.staffManagement.repository.DeptRepositoryImpl;
+import org.staffManagement.repository.repoImpl.DeptRepositoryImpl;
 import org.staffManagement.service.DeptService;
 
 public class DeptServiceImpl implements DeptService {

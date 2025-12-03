@@ -1,7 +1,9 @@
-package org.staffManagement.clientApp;
+package org.staffManagement;
 import java.util.*;
 
-import org.staffManagement.model.StaffRole;
+import org.staffManagement.clientApp.AttendanceClient;
+import org.staffManagement.clientApp.DeptClient;
+import org.staffManagement.clientApp.StaffRoleClient;
 import org.staffManagement.service.AdminLoginService;
 import org.staffManagement.service.serviceImpl.AdminLoginServiceImpl;
 
@@ -47,7 +49,8 @@ public class ClientApplication {
 
 							break;
 						case 4:
-
+                            AttendanceClient ac = new AttendanceClient();
+                            ac.AttendanceOps();
 							break;
 						case 5:
 

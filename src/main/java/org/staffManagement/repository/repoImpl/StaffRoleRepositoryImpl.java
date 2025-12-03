@@ -1,7 +1,8 @@
-package org.staffManagement.repository;
+package org.staffManagement.repository.repoImpl;
 
 import org.staffManagement.dbConfig.DbConfiguration;
 import org.staffManagement.model.StaffRole;
+import org.staffManagement.repository.StaffRoleRepository;
 
 import java.util.ArrayList;
 import java.util.List;

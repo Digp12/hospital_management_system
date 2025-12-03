@@ -1,7 +1,7 @@
 package org.staffManagement.service.serviceImpl;
 
 import org.staffManagement.repository.AdminLoginRepo;
-import org.staffManagement.repository.AdminLoginRepoImpl;
+import org.staffManagement.repository.repoImpl.AdminLoginRepoImpl;
 import org.staffManagement.service.AdminLoginService;
 
 public class AdminLoginServiceImpl implements AdminLoginService{

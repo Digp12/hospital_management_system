@@ -1,9 +1,9 @@
-package org.staffManagement.repository;
+package org.staffManagement.repository.repoImpl;
 
 import org.staffManagement.dbConfig.DbConfiguration;
-import org.staffManagement.model.VerifyAdminLogin;
+import org.staffManagement.repository.AdminLoginRepo;
 
-public class AdminLoginRepoImpl extends DbConfiguration implements AdminLoginRepo{
+public class AdminLoginRepoImpl extends DbConfiguration implements AdminLoginRepo {
 	
 	
 	public boolean isLogin(String un, String pass) {

@@ -1,12 +1,13 @@
-package org.staffManagement.repository;
+package org.staffManagement.repository.repoImpl;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.staffManagement.dbConfig.DbConfiguration;
 import org.staffManagement.model.Department;
+import org.staffManagement.repository.DeptRepository;
 
-public class DeptRepositoryImpl extends DbConfiguration implements DeptRepository{
+public class DeptRepositoryImpl extends DbConfiguration implements DeptRepository {
 
 	@Override
 	public boolean addDept(Department dept) {

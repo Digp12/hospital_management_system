@@ -2,7 +2,7 @@ package org.staffManagement.service.serviceImpl;
 
 import org.staffManagement.model.StaffRole;
 import org.staffManagement.repository.StaffRoleRepository;
-import org.staffManagement.repository.StaffRoleRepositoryImpl;
+import org.staffManagement.repository.repoImpl.StaffRoleRepositoryImpl;
 import org.staffManagement.service.StaffRoleService;
 
 import java.util.List;
