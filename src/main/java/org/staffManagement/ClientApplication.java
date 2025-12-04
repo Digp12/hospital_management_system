@@ -31,7 +31,7 @@ public class ClientApplication {
 								"----------------------------------------------------------------------------------------------------------");
 						System.out.println("Enter Your Choice");
 						System.out.println(
-								"1. Manage Department\n2. Manage StaffRole\n3. Manage Staff\n4. Manage Attendance\n5. Manage Shifts\n6.Manage Salary\n7. Exit ");
+								"1. --> Manage Department\n2. --> Manage StaffRole\n3. --> Manage Staff\n4. --> Manage Attendance\n5. --> Manage Shifts\n6. --> Manage Salary\n7. --> Exit ");
 						int choice = scanner.nextInt();
 
 						switch (choice) {
