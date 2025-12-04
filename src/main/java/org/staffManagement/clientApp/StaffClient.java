@@ -202,6 +202,8 @@ public class StaffClient {
                     System.out.println("Invalid Input...");
                     break;
             }
+            System.out.println("----------------------------------------------------------------------------------------------------------");
+
         } while (true);
     }
 }

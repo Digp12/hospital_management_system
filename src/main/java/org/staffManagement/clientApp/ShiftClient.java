@@ -167,7 +167,10 @@ public class ShiftClient {
                 default:
                     System.out.println("Invalid Choice");
                     break;
+
+
             }
+            System.out.println("----------------------------------------------------------------------------------------------------------");
         } while (true);
     }
 

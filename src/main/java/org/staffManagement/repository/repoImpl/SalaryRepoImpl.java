@@ -84,7 +84,7 @@ public class SalaryRepoImpl extends DbConfiguration implements SalaryRepo {
             preparedStatement = connection.prepareStatement("select count(*) from attendance group by status, s_id having status = 'absent' AND s_id ="+id);
             resultSet = preparedStatement.executeQuery();
             int countOfHoliday = 0;
-            while(resultSet.next()) {
+            if(resultSet.next()) {
                 countOfHoliday = resultSet.getInt(1);
             }
             return countOfHoliday;
