@@ -9,4 +9,5 @@ public interface AttendanceService {
     boolean updateAttendance(Attendance a);
     boolean deleteAttendance(int id);
     List<Attendance> showAllAttendance();
+    Attendance getAttendanceById(int id);
 }
