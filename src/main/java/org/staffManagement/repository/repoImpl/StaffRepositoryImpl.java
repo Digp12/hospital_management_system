@@ -8,6 +8,7 @@ import org.staffManagement.repository.StaffRepository;
 import org.staffManagement.repository.StaffRoleRepository;
 
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -174,5 +175,63 @@ public class StaffRepositoryImpl extends DbConfiguration implements StaffReposit
             System.out.println(e.getMessage());
         }
         return false;
+    }
+
+    @Override
+    public Staff getStaffById(int id) {
+        try{
+            preparedStatement =connection.prepareStatement("select * from staff where s_id=?");
+            preparedStatement.setInt(1,id);
+            resultSet=preparedStatement.executeQuery();
+            if(resultSet.next()){
+                Staff staff=new Staff();
+                staff.setStaff_id(resultSet.getInt("s_id"));
+                staff.setName(resultSet.getString("s_name"));
+                staff.setGender(Gender.valueOf(resultSet.getString("s_gender")));
+                staff.setPhone(resultSet.getString("s_phone"));
+                staff.setAddress(resultSet.getString("s_address"));
+                staff.setEmail(resultSet.getString("s_email"));
+                staff.setJoinDate(resultSet.getDate("join_date").toLocalDate());
+                staff.setStatus(Status.valueOf(resultSet.getString("s_status")));
+                int r_id=resultSet.getInt("r_id");
+                staff.setStaffRole(ServiceHelper.staffRoleService.getStaffRoleById(r_id));
+                int d_id=resultSet.getInt("d_id");
+                staff.setDepartment(ServiceHelper.deptService.getDeptById(d_id));
+                return staff;
+            }
+            return null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
+    @Override
+    public Staff getStaffByName(String staffName) {
+        try{
+            preparedStatement =connection.prepareStatement("select * from staff where s_name=?");
+            preparedStatement.setString(1,staffName);
+            resultSet=preparedStatement.executeQuery();
+            if(resultSet.next()){
+                Staff staff=new Staff();
+                staff.setStaff_id(resultSet.getInt("s_id"));
+                staff.setName(resultSet.getString("s_name"));
+                staff.setGender(Gender.valueOf(resultSet.getString("s_gender")));
+                staff.setPhone(resultSet.getString("s_phone"));
+                staff.setAddress(resultSet.getString("s_address"));
+                staff.setEmail(resultSet.getString("s_email"));
+                staff.setJoinDate(resultSet.getDate("join_date").toLocalDate());
+                staff.setStatus(Status.valueOf(resultSet.getString("s_status")));
+                int r_id=resultSet.getInt("r_id");
+                staff.setStaffRole(ServiceHelper.staffRoleService.getStaffRoleById(r_id));
+                int d_id=resultSet.getInt("d_id");
+                staff.setDepartment(ServiceHelper.deptService.getDeptById(d_id));
+                return staff;
+            }
+            return null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 }

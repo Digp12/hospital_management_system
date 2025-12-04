@@ -13,4 +13,6 @@ public interface StaffRepository {
     public boolean addStaff(Staff staff);
     public boolean updateStaff(Staff staff);
     public boolean deleteStaff(int id);
+    public Staff getStaffById(int id);
+    public Staff getStaffByName(String staffName);
 }

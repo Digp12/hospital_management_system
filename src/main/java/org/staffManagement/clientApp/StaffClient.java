@@ -146,7 +146,8 @@ public class StaffClient {
                     try {
                         List<Staff> staffs = ServiceHelper.staffService.getAllStaff();
                         if (staffs != null) {
-                            staffs.forEach(System.out::println);
+                            staffs.forEach(x -> System.out.println(x.getStaff_id()+"\t"+x.getName()+"\t"+x.getPhone()+"\t"+x.getEmail()+"\t"+x.getAddress()
+                                    +"\t"+x.getStaffRole().getSr_id()+"\t"+x.getStaffRole().getRole()+"\t"+x.getDepartment().getD_id()+"\t"+x.getDepartment().getName()+"\t"));
                         } else {
                             System.out.println("Staff Table is empty...first add somthing");
                         }
@@ -167,8 +168,8 @@ public class StaffClient {
                         }
                         List<Staff> staffs = ServiceHelper.staffService.getAllStaffByDepartment(department);
                         if (staffs != null) {
-                            staffs.forEach(System.out::println);
-                        } else {
+                            staffs.forEach(x -> System.out.println(x.getStaff_id()+"\t"+x.getName()+"\t"+x.getPhone()+"\t"+x.getEmail()+"\t"+x.getAddress()
+                                    +"\t"+x.getStaffRole().getSr_id()+"\t"+x.getStaffRole().getRole()+"\t"+x.getDepartment().getD_id()+"\t"+x.getDepartment().getName()+"\t"));                        } else {
                             System.out.println("Staffs are not available in this Deparment...");
                         }
                     } catch (Exception e) {
@@ -186,8 +187,8 @@ public class StaffClient {
                         } else {
                             List<Staff> staffs = ServiceHelper.staffService.getAllStaffByRole(staffRole);
                             if (staffs != null) {
-                                staffs.forEach(System.out::println);
-                            } else {
+                                staffs.forEach(x -> System.out.println(x.getStaff_id()+"\t"+x.getName()+"\t"+x.getPhone()+"\t"+x.getEmail()+"\t"+x.getAddress()
+                                        +"\t"+x.getStaffRole().getSr_id()+"\t"+x.getStaffRole().getRole()+"\t"+x.getDepartment().getD_id()+"\t"+x.getDepartment().getName()+"\t"));                            } else {
                                 System.out.println("Staff are not available in this Staff Role...");
                             }
                         }

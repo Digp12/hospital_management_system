@@ -51,8 +51,9 @@ public class ClientApplication {
                             AttendanceClient ac = new AttendanceClient();
                             ac.AttendanceOps();
 							break;
-						case 5:
-
+                        case 5:
+                            ShiftClient shift = new ShiftClient();
+                            shift.shiftOps();
 							break;
 						case 6:
                             SalaryClient salaryClient = new SalaryClient();

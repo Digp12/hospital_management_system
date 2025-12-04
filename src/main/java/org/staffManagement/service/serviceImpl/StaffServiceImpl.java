@@ -40,4 +40,14 @@ public class StaffServiceImpl implements StaffService {
     public boolean deleteStaff(int id) {
         return staffRepository.deleteStaff(id);
     }
+
+    @Override
+    public Staff getStaffById(int id) {
+        return staffRepository.getStaffById(id);
+    }
+
+    @Override
+    public Staff getStaffByName(String staffName) {
+        return staffRepository.getStaffByName(staffName);
+    }
 }
