@@ -1,10 +1,7 @@
 package org.staffManagement;
 import java.util.*;
 
-import org.staffManagement.clientApp.AttendanceClient;
-import org.staffManagement.clientApp.DeptClient;
-import org.staffManagement.clientApp.StaffClient;
-import org.staffManagement.clientApp.StaffRoleClient;
+import org.staffManagement.clientApp.*;
 import org.staffManagement.service.AdminLoginService;
 import org.staffManagement.service.serviceImpl.AdminLoginServiceImpl;
 
@@ -58,7 +55,8 @@ public class ClientApplication {
 
 							break;
 						case 6:
-
+                            SalaryClient salaryClient = new SalaryClient();
+                            salaryClient.salaryOps();
 							break;
 						case 7:
 							System.exit(0);

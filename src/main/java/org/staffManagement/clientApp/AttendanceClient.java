@@ -71,6 +71,9 @@ public class AttendanceClient {
                     System.out.println(at.getId()+"\t"+at.getStaff_id()+"\t"+at.getDate()+"\t"+at.getIn_time()+"\t"+at.getOut_time()+"\t"+at.getStatus());
                 }
                 break;
+            default:
+                System.out.println("You Entered Wrong Choice");
+                break;
         }
     }
 }
