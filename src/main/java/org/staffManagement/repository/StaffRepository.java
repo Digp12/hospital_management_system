@@ -12,5 +12,5 @@ public interface StaffRepository {
     public List<Staff> getAllStaffByRole(StaffRole staffRole);
     public boolean addStaff(Staff staff);
     public boolean updateStaff(Staff staff);
-    public boolean deleteStaff(Staff staff);
+    public boolean deleteStaff(int id);
 }

@@ -34,13 +34,12 @@ public class DeptServiceImpl implements DeptService {
 
     @Override
     public Department getDeptById(int deptId) {
-
-        return null;
+        return deptRepository.getDeptById(deptId);
     }
 
     @Override
     public Department getDeptByName(String deptName) {
-        return null;
+        return deptRepository.getDeptByName(deptName);
     }
 
 

@@ -7,6 +7,7 @@ import org.staffManagement.repository.DeptRepository;
 import org.staffManagement.repository.StaffRepository;
 import org.staffManagement.repository.StaffRoleRepository;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +37,7 @@ public class StaffRepositoryImpl extends DbConfiguration implements StaffReposit
                 Department department = ServiceHelper.deptService.getDeptById(id);
                 staff.setDepartment(department);
                 staff.setStatus(Status.valueOf(resultSet.getString("s_status")));
-                staff.setJoinDate(resultSet.getDate("s_join_date"));
+                staff.setJoinDate(resultSet.getDate("join_date").toLocalDate());
                 staffList.add(staff);
             }
             return staffList;
@@ -71,7 +72,7 @@ public class StaffRepositoryImpl extends DbConfiguration implements StaffReposit
                 department = ServiceHelper.deptService.getDeptById(id);
                 staff.setDepartment(department);
                 staff.setStatus(Status.valueOf(resultSet.getString("s_status")));
-                staff.setJoinDate(resultSet.getDate("s_join_date"));
+                staff.setJoinDate(resultSet.getDate("join_date").toLocalDate());
                 staffList.add(staff);
 
             }
@@ -108,29 +109,31 @@ public class StaffRepositoryImpl extends DbConfiguration implements StaffReposit
                 Department department = ServiceHelper.deptService.getDeptById(id);
                 staff.setDepartment(department);
 
-                staff.setJoinDate(resultSet.getDate("join_date"));
+                staff.setJoinDate(resultSet.getDate("join_date").toLocalDate());
                 staff.setStatus(Status.valueOf(resultSet.getString("s_status")));
 
                 staffList.add(staff);
             }
+            return staffList;
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
-        return List.of();
+        return null;
     }
 
     @Override
     public boolean addStaff(Staff staff) {
         try{
-            preparedStatement=connection.prepareStatement("insert into staff(s_id,s_name,s_gender,s_phone,s_address,d_id,r_id,s_status,join_date) values(?,?,?,?,?,?,?,?,?,?,current_date)");
-            preparedStatement.setInt(1, staff.getStaff_id());
-            preparedStatement.setString(2, staff.getName());
-            preparedStatement.setString(3, String.valueOf(staff.getGender()));
-            preparedStatement.setString(4, staff.getPhone());
-            preparedStatement.setString(5, staff.getAddress());
-            preparedStatement.setInt(6,staff.getDepartment().getD_id());
-            preparedStatement.setInt(7,staff.getStaffRole().getSr_id());
-            preparedStatement.setString(9, String.valueOf(staff.getStatus()));
+            preparedStatement=connection.prepareStatement("insert into staff(s_name,s_gender,s_phone,s_address,d_id,r_id,s_status,join_date,s_email) values (?,?,?,?,?,?,?,?,?)");
+            preparedStatement.setString(1, staff.getName());
+            preparedStatement.setString(2, String.valueOf(staff.getGender()));
+            preparedStatement.setString(3, staff.getPhone());
+            preparedStatement.setString(4, staff.getAddress());
+            preparedStatement.setInt(5,staff.getDepartment().getD_id());
+            preparedStatement.setInt(6,staff.getStaffRole().getSr_id());
+            preparedStatement.setString(7, String.valueOf(staff.getStatus()));
+            preparedStatement.setDate(8, Date.valueOf(staff.getJoinDate()));
+            preparedStatement.setString(9, staff.getEmail());
 
             return preparedStatement.executeUpdate()>0;
         }catch(Exception e){
@@ -141,14 +144,32 @@ public class StaffRepositoryImpl extends DbConfiguration implements StaffReposit
 
     @Override
     public boolean updateStaff(Staff staff) {
+        try {
+            preparedStatement = connection.prepareStatement("update staff set s_name=?,s_gender=?,s_phone=?,s_address=?,d_id=?,r_id=?,s_status=?,join_date=? ,s_email=? where s_id=?");
+            preparedStatement.setString(1, staff.getName());
+            preparedStatement.setString(2, String.valueOf(staff.getGender()));
+            preparedStatement.setString(3, staff.getPhone());
+            preparedStatement.setString(4, staff.getAddress());
+            preparedStatement.setInt(5,staff.getDepartment().getD_id());
+            preparedStatement.setInt(6,staff.getStaffRole().getSr_id());
+            preparedStatement.setString(7, String.valueOf(staff.getStatus()));
+            preparedStatement.setDate(8, Date.valueOf(staff.getJoinDate()));
+
+            preparedStatement.setString(9, staff.getEmail());
+            preparedStatement.setInt(10, staff.getStaff_id());
+            return preparedStatement.executeUpdate()>0;
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+
         return false;
     }
 
     @Override
-    public boolean deleteStaff(Staff staff) {
+    public boolean deleteStaff(int id) {
         try{
             preparedStatement=connection.prepareStatement("delete from staff where s_id=?");
-            preparedStatement.setInt(1,staff.getStaff_id());
+            preparedStatement.setInt(1,id);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

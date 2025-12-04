@@ -33,11 +33,11 @@ public class StaffServiceImpl implements StaffService {
 
     @Override
     public boolean updateStaff(Staff staff) {
-        return false;
+        return staffRepository.updateStaff(staff);
     }
 
     @Override
-    public boolean deleteStaff(Staff staff) {
-        return false;
+    public boolean deleteStaff(int id) {
+        return staffRepository.deleteStaff(id);
     }
 }

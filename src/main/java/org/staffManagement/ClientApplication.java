@@ -3,6 +3,7 @@ import java.util.*;
 
 import org.staffManagement.clientApp.AttendanceClient;
 import org.staffManagement.clientApp.DeptClient;
+import org.staffManagement.clientApp.StaffClient;
 import org.staffManagement.clientApp.StaffRoleClient;
 import org.staffManagement.service.AdminLoginService;
 import org.staffManagement.service.serviceImpl.AdminLoginServiceImpl;
@@ -46,7 +47,8 @@ public class ClientApplication {
                             staffroleclient.StaffRoleOps();
 							break;
 						case 3:
-
+                            StaffClient staffclient = new StaffClient();
+                            staffclient.StaffOps();
 							break;
 						case 4:
                             AttendanceClient ac = new AttendanceClient();
