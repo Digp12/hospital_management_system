@@ -13,11 +13,7 @@ public class AdminLoginRepoImpl extends DbConfiguration implements AdminLoginRep
 			preparedStatement.setString(1, un);
 			preparedStatement.setString(2, pass);
 			resultSet = preparedStatement.executeQuery();
-			if(resultSet.next()) {
-				return true;
-			}else {
-				return false;
-			}
+            return resultSet.next();
 		} catch (Exception e) {
 			System.out.println("Error is :"+ e);
 			return false;

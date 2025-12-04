@@ -18,16 +18,21 @@ public class AttendanceServiceImpl implements AttendanceService {
 
     @Override
     public boolean updateAttendance(Attendance a) {
-        return false;
+        return attendaceRepo.updateAttendance(a);
     }
 
     @Override
     public boolean deleteAttendance(int id) {
-        return false;
+        return attendaceRepo.deleteAttendance(id);
     }
 
     @Override
     public List<Attendance> showAllAttendance() {
-        return List.of();
+        return attendaceRepo.showAllAttendance();
+    }
+
+    @Override
+    public Attendance getAttendanceById(int id) {
+        return attendaceRepo.getAttendanceById(id);
     }
 }
