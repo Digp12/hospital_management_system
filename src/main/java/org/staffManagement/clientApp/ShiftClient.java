@@ -51,17 +51,17 @@ public class ShiftClient {
                         shift1.setShiftType(ShiftType.valueOf(shiftType));
                         shift1.setStartTime(AssignStartTime(shiftType));
                         shift1.setEndTime(AssignEndTime(shiftType));
-                        Shifts shift2 = ServiceHelper.shiftsRepository.getShiftByStaffAndDate(staff, date);
+                        Shifts shift2 = ServiceHelper.shiftsService.getShiftByStaffAndDate(staff, date);
                         if (shift2 != null) {
                             if (shift1.getShiftDate().isEqual(shift2.getShiftDate())) {
                                 System.out.println(staffName + " has been already assigned to That Day");
                             } else {
-                                ServiceHelper.shiftsRepository.assignShifts(shift1);
+                                ServiceHelper.shiftsService.assignShifts(shift1);
                                 System.out.println(staffName + " has been assigned to That Day");
 
                             }
                         } else {
-                            ServiceHelper.shiftsRepository.assignShifts(shift1);
+                            ServiceHelper.shiftsService.assignShifts(shift1);
                             System.out.println(staffName + " has been assigned to That Day");
 
                         }
@@ -104,16 +104,16 @@ public class ShiftClient {
                         shift1.setShiftType(ShiftType.valueOf(shiftType));
                         shift1.setStartTime(AssignStartTime(shiftType));
                         shift1.setEndTime(AssignEndTime(shiftType));
-                        Shifts shift2 = ServiceHelper.shiftsRepository.getShiftByStaffAndDate(staff, date);
+                        Shifts shift2 = ServiceHelper.shiftsService.getShiftByStaffAndDate(staff, date);
                         if (shift2 != null) {
                             if (shift1.getShiftDate().isEqual(shift2.getShiftDate())) {
                                 System.out.println(staffName + " has been already assigned to That Day");
                             } else {
-                                ServiceHelper.shiftsRepository.updateShiftById(shift1);
+                                ServiceHelper.shiftsService.updateShiftById(shift1);
                                 System.out.println(staffName + " has been Updated to That Day");
                             }
                         } else {
-                            ServiceHelper.shiftsRepository.updateShiftById(shift1);
+                            ServiceHelper.shiftsService.updateShiftById(shift1);
                             System.out.println(staffName + " has been Updated to That Day");
                         }
 
@@ -126,7 +126,7 @@ public class ShiftClient {
                         System.out.println("Enter Shift id To Delete");
                         int id = scanner.nextInt();
                         scanner.nextLine();
-                        if(ServiceHelper.shiftsRepository.deleteShiftById(id)){
+                        if(ServiceHelper.shiftsService.deleteShiftById(id)){
                             System.out.println("Shift Deleted Successfully");
                         }
                         else{
@@ -138,7 +138,7 @@ public class ShiftClient {
                     break;
                 case 4:
                     try {
-                        List<Shifts> shifts = ServiceHelper.shiftsRepository.getAllShifts();
+                        List<Shifts> shifts = ServiceHelper.shiftsService.getAllShifts();
 
                         for (Shifts shift : shifts) {
                             System.out.println(shift.getShiftId()+"\t"+shift.getShiftDate()+"\t"+shift.getShiftType()
@@ -153,7 +153,7 @@ public class ShiftClient {
                         System.out.println("Enter Date to fetch all shifts of tht date");
                         String date = scanner.nextLine();
                         LocalDate date1 = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-                       List<Shifts> shifts= ServiceHelper.shiftsRepository.getAllShiftsByDate(date1);
+                       List<Shifts> shifts= ServiceHelper.shiftsService.getAllShiftsByDate(date1);
                         for (Shifts shift : shifts) {
                             System.out.println(shift.getShiftId()+"\t"+shift.getShiftDate()+"\t"+shift.getShiftType()
                                     +"\t"+shift.getStartTime()+"\t"+shift.getEndTime()+"\t"+shift.getStaff().getStaff_id()+"\t"+shift.getStaff().getName());
