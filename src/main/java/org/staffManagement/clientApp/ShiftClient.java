@@ -20,7 +20,7 @@ public class ShiftClient {
         do {
             System.out.println("----------------------------------------------------------------------------------------------------------");
             System.out.println("Welcome To Shifts Management Process\n\nEnter Your Choice");
-            System.out.println("1. Assign Staff To Shifts\n2. Update Shift\n3. Delete shift\n4. Show All Assigned shifts \n5.show DateWise Shifts \n7.Exit");
+            System.out.println("1. Assign Staff To Shifts\n2. Update Shift\n3. Delete shift\n4. Show All Assigned shifts \n5. show DateWise Shifts \n7. Exit");
             int choice = scanner.nextInt();
             scanner.nextLine();
             switch (choice) {
@@ -73,9 +73,25 @@ public class ShiftClient {
                     break;
                 case 2:
                     try {
+                        List<Shifts> shifts = ServiceHelper.shiftsService.getAllShifts();
+                        System.out.println("Shift Id \tShift Date \t Shift Type \t Shift Start Time \t Shift End Time \t Staff Id \t\tStaff Name");
+                        System.out.println("----------------------------------------------------------------------------------------------------------");
+                        for (Shifts shift : shifts) {
+                            System.out.println("\t"+shift.getShiftId()+"\t\t"+shift.getShiftDate()+"\t\t"+shift.getShiftType()
+                                    +"\t\t\t\t"+shift.getStartTime()+"\t\t\t"+shift.getEndTime()+"\t\t\t\t"+shift.getStaff().getStaff_id()+"\t\t\t"+shift.getStaff().getName());
+                        }
+                        System.out.println("----------------------------------------------------------------------------------------------------------");
+
+
                         System.out.println("Enter Shift id To Update");
                         int id = scanner.nextInt();
                         scanner.nextLine();
+                        Shifts shiftUpdate = ServiceHelper.shiftsService.getShiftById(id);
+                        if (shiftUpdate != null) {
+                            System.out.println("you are going to update this shift\n");
+                            System.out.println("\t"+shiftUpdate.getShiftId()+"\t\t"+shiftUpdate.getShiftDate()+"\t\t"+shiftUpdate.getShiftType()
+                                    +"\t\t\t\t"+shiftUpdate.getStartTime()+"\t\t\t"+shiftUpdate.getEndTime()+"\t\t\t\t"+shiftUpdate.getStaff().getStaff_id()+"\t\t\t"+shiftUpdate.getStaff().getName());
+                        }
 
 
                         System.out.println("Enter Updated Staff Name to Assign to shift");
@@ -139,11 +155,14 @@ public class ShiftClient {
                 case 4:
                     try {
                         List<Shifts> shifts = ServiceHelper.shiftsService.getAllShifts();
-
+                        System.out.println("Shift Id \tShift Date \t Shift Type \t Shift Start Time \t Shift End Time \t Staff Id \t\tStaff Name");
+                        System.out.println("----------------------------------------------------------------------------------------------------------");
                         for (Shifts shift : shifts) {
-                            System.out.println(shift.getShiftId()+"\t"+shift.getShiftDate()+"\t"+shift.getShiftType()
-                                    +"\t"+shift.getStartTime()+"\t"+shift.getEndTime()+"\t"+shift.getStaff().getStaff_id()+"\t"+shift.getStaff().getName());
+                            System.out.println("\t"+shift.getShiftId()+"\t\t"+shift.getShiftDate()+"\t\t"+shift.getShiftType()
+                                    +"\t\t\t\t"+shift.getStartTime()+"\t\t\t"+shift.getEndTime()+"\t\t\t\t"+shift.getStaff().getStaff_id()+"\t\t\t"+shift.getStaff().getName());
                         }
+                        System.out.println("----------------------------------------------------------------------------------------------------------");
+
                     }catch (Exception e){
                         System.out.println(e.getMessage());
                     }
@@ -154,10 +173,14 @@ public class ShiftClient {
                         String date = scanner.nextLine();
                         LocalDate date1 = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
                        List<Shifts> shifts= ServiceHelper.shiftsService.getAllShiftsByDate(date1);
+                        System.out.println("Shift Id \tShift Date \t Shift Type \t Shift Start Time \t Shift End Time \t Staff Id \t\tStaff Name");
+                        System.out.println("----------------------------------------------------------------------------------------------------------");
                         for (Shifts shift : shifts) {
-                            System.out.println(shift.getShiftId()+"\t"+shift.getShiftDate()+"\t"+shift.getShiftType()
-                                    +"\t"+shift.getStartTime()+"\t"+shift.getEndTime()+"\t"+shift.getStaff().getStaff_id()+"\t"+shift.getStaff().getName());
+                            System.out.println("\t"+shift.getShiftId()+"\t\t"+shift.getShiftDate()+"\t\t"+shift.getShiftType()
+                                    +"\t\t\t\t"+shift.getStartTime()+"\t\t\t"+shift.getEndTime()+"\t\t\t\t"+shift.getStaff().getStaff_id()+"\t\t\t"+shift.getStaff().getName());
                         }
+                        System.out.println("----------------------------------------------------------------------------------------------------------");
+
                     }catch (Exception e){
                         System.out.println(e.getMessage());
                     }

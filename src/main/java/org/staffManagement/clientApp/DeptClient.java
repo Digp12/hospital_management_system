@@ -38,9 +38,20 @@ public class DeptClient {
                         }
                         break;
                     case 2:
+
+                        System.out.println("Department Id\tDepartment Name\tDepartment Description");
+                        System.out.println("----------------------------------------------------------------------------------------------------------");
+                        ServiceHelper.deptService.getAllDept().forEach(e->System.out.println("\t\t"+e.getD_id()+"\t\t\t"+e.getName()+"\t\t\t"+e.getDescriptin()));
+                        System.out.println("----------------------------------------------------------------------------------------------------------");
+
                         System.out.println("Enter Department ID which you want to Update :");
                         int id = scanner.nextInt();
                         scanner.nextLine();
+                        Department d1=ServiceHelper.deptService.getDeptById(id);
+                        if(d1!=null){
+                            System.out.println("you are going to update this Department\n");
+                            System.out.println("\t\t"+d1.getD_id()+"\t\t\t"+d1.getName()+"\t\t\t"+d1.getDescriptin());
+                        }
                         System.out.println("Enter Updated Department Name :");
                         String updatedNameString = scanner.nextLine();
                         System.out.println("Enter Updated Department Description :");
@@ -66,7 +77,11 @@ public class DeptClient {
                         }
                         break;
                     case 4:
-                        ServiceHelper.deptService.getAllDept().forEach(System.out::println);
+                        System.out.println("Department Id\tDepartment Name\tDepartment Description");
+                        System.out.println("----------------------------------------------------------------------------------------------------------");
+                        ServiceHelper.deptService.getAllDept().forEach(e->System.out.println("\t\t"+e.getD_id()+"\t\t\t"+e.getName()+"\t\t\t"+e.getDescriptin()));
+                        System.out.println("----------------------------------------------------------------------------------------------------------");
+
                         break;
                     case 5:
                         break LOOP;

@@ -7,12 +7,12 @@ import org.staffManagement.model.StaffRole;
 import java.util.List;
 
 public interface StaffRepository {
-    public List<Staff> getAllStaff();
-    public List<Staff> getAllStaffByDepartment(Department department);
-    public List<Staff> getAllStaffByRole(StaffRole staffRole);
-    public boolean addStaff(Staff staff);
-    public boolean updateStaff(Staff staff);
-    public boolean deleteStaff(int id);
-    public Staff getStaffById(int id);
-    public Staff getStaffByName(String staffName);
+     List<Staff> getAllStaff();
+     List<Staff> getAllStaffByDepartment(Department department);
+     List<Staff> getAllStaffByRole(StaffRole staffRole);
+     boolean addStaff(Staff staff);
+     boolean updateStaff(Staff staff);
+     boolean deleteStaff(int id);
+     Staff getStaffById(int id);
+     Staff getStaffByName(String staffName);
 }

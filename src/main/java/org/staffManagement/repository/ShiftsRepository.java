@@ -7,12 +7,12 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface ShiftsRepository {
-    public boolean assignShifts(Shifts shifts);
-    public List<Shifts> getAllShifts();
-    public Shifts getShiftById(int id);
-    public boolean deleteShiftById(int id);
-    public Shifts getShiftByStaffAndDate(Staff staff, LocalDate date);
-    public boolean deleteShiftByStaff(Staff staff);
-    public List<Shifts> getAllShiftsByDate(LocalDate date);
-    public boolean updateShiftById(Shifts shifts);
+     boolean assignShifts(Shifts shifts);
+     List<Shifts> getAllShifts();
+     Shifts getShiftById(int id);
+     boolean deleteShiftById(int id);
+     Shifts getShiftByStaffAndDate(Staff staff, LocalDate date);
+     boolean deleteShiftByStaff(Staff staff);
+     List<Shifts> getAllShiftsByDate(LocalDate date);
+     boolean updateShiftById(Shifts shifts);
 }

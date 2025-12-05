@@ -19,7 +19,7 @@ public class StaffClient {
         do {
             System.out.println("----------------------------------------------------------------------------------------------------------");
             System.out.println("Welcome To Staff Management Process\n\nEnter Your Choice");
-            System.out.println("1. Add New Staff\n2. Update Staff\n3. Delete Staff\n4. Show All Staff\n5. show All Staff By Department \n6.show All Staff By Staff Role \n 7.Exit");
+            System.out.println("1. Add New Staff\n2. Update Staff\n3. Delete Staff\n4. Show All Staff\n5. show All Staff By Department \n6. show All Staff By Staff Role \n 7. Exit");
             int choice = scanner.nextInt();
             scanner.nextLine();
             switch (choice) {
