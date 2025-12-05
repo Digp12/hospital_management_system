@@ -73,6 +73,7 @@ public class ShiftClient {
                     break;
                 case 2:
                     try {
+
                         System.out.println("Enter Shift id To Update");
                         int id = scanner.nextInt();
                         scanner.nextLine();
