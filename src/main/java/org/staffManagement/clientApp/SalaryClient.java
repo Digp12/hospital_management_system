@@ -14,10 +14,10 @@ public class SalaryClient {
         Scanner sc = new Scanner(System.in);
         LOOP:
         do {
-            System.out.println("===============================================================================");
+            System.out.println("=========================================================================================");
             System.out.println("Welcome to Salary Management");
             System.out.println("Here You can manage your salary");
-            System.out.println("================================================================================");
+            System.out.println("=========================================================================================");
             System.out.println("1. Add Salary\n2. Update Salary\n3. Delete Salary\n4. Show Salary\n5. Exit");
             int choice = sc.nextInt();
 
@@ -45,7 +45,13 @@ public class SalaryClient {
                     System.out.println(isInsertSalary ? "Record Insert Successfully" : "Something Went Wrong...");
                     break;
                 case 2:
-                    System.out.println("Enter Salary Id which you want to Update...");
+                    List<Salary> salList = ServiceHelper.salaryService.viewSalary();
+                    System.out.println("Salary Id\tStaff Id\tBasic Salary\tH.R.A\tD.A\t\tP.F\t\tMonth\t\tNetSalary");
+                    System.out.println("---------------------------------------------------------------------------------------------");
+                    for (Salary sal : salList) {
+                        System.out.println("\t"+sal.getSalary_id() + "\t\t\t" + sal.getStaff_id() + "\t\t\t" + sal.getBasic_salary() + "\t\t" + sal.getHra() + "\t" + sal.getDa() + "\t" + sal.getPf() + "\t" + sal.getMonth_year() + "\t\t" + sal.getNet_salary());
+                    }
+                    System.out.println("\nNow Enter Salary Id which you want to Update...");
                     int sal_id = sc.nextInt();
                     Salary salary = ServiceHelper.salaryService.getSalaryById(sal_id);
                     System.out.println(salary.getSalary_id() + "\t" + salary.getStaff_id() + "\t" + salary.getBasic_salary() + "\t" + salary.getHra() + "\t" + salary.getDa() + "\t" + salary.getPf() + "\t" + salary.getMonth_year() + "\t" + salary.getNet_salary());
@@ -76,9 +82,11 @@ public class SalaryClient {
                     System.out.println(isDelete ? "Salary deleted successfully" : " Something Went wrong....!");
                     break;
                 case 4:
-                    List<Salary> salList = ServiceHelper.salaryService.viewSalary();
-                    for (Salary sal : salList) {
-                        System.out.println(sal.getSalary_id() + "\t" + sal.getStaff_id() + "\t" + sal.getBasic_salary() + "\t" + sal.getHra() + "\t" + sal.getDa() + "\t" + sal.getPf() + "\t" + sal.getMonth_year() + "\t" + sal.getNet_salary());
+                    List<Salary> salList2 = ServiceHelper.salaryService.viewSalary();
+                    System.out.println("Salary Id\tStaff Id\tBasic Salary\tH.R.A\tD.A\t\tP.F\t\tMonth\t\tNetSalary");
+                    System.out.println("---------------------------------------------------------------------------------------------");
+                    for (Salary sal : salList2) {
+                        System.out.println("\t"+sal.getSalary_id() + "\t\t\t" + sal.getStaff_id() + "\t\t\t" + sal.getBasic_salary() + "\t\t" + sal.getHra() + "\t" + sal.getDa() + "\t" + sal.getPf() + "\t" + sal.getMonth_year() + "\t\t" + sal.getNet_salary());
                     }
                     break;
                 case 5:
