@@ -34,10 +34,10 @@ public class ShiftClient {
                             System.out.println("Staff Not Found...Try Again");
                             continue;
                         }
-                        System.out.println("Enter Shift Date ");
+                        System.out.println("Enter Shift date in the format dd/mm/YYYY : ");
                         String shiftDate = scanner.nextLine();
                         LocalDate date = LocalDate.parse(shiftDate, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-                        if (!date.isAfter(LocalDate.now()) && date.isEqual(LocalDate.now())) {
+                        if (date.isBefore(LocalDate.now()) && date.isEqual(LocalDate.now())) {
                             System.out.println("Please Enter Upcoming Date...Try Again");
                             continue;
                         }
@@ -92,8 +92,9 @@ public class ShiftClient {
                             System.out.println("\t"+shiftUpdate.getShiftId()+"\t\t"+shiftUpdate.getShiftDate()+"\t\t"+shiftUpdate.getShiftType()
                                     +"\t\t\t\t"+shiftUpdate.getStartTime()+"\t\t\t"+shiftUpdate.getEndTime()+"\t\t\t\t"+shiftUpdate.getStaff().getStaff_id()+"\t\t\t"+shiftUpdate.getStaff().getName());
                         }
-
-
+                        else{
+                            System.out.println("Shift Not Found...Try Again");
+                        }
                         System.out.println("Enter Updated Staff Name to Assign to shift");
                         String staffName = scanner.nextLine();
 
@@ -102,10 +103,10 @@ public class ShiftClient {
                             System.out.println("Staff Not Found...Try Again");
                             continue;
                         }
-                        System.out.println("Enter Updated Shift Date ");
+                        System.out.println("Enter Updated Shift date in format dd/mm/YYYY : ");
                         String shiftDate = scanner.nextLine();
                         LocalDate date = LocalDate.parse(shiftDate, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-                        if (!date.isAfter(LocalDate.now()) && date.isEqual(LocalDate.now())) {
+                        if (date.isBefore(LocalDate.now()) && date.isEqual(LocalDate.now())) {
                             System.out.println("Please Enter Upcoming Date...Try Again");
                             continue;
                         }
@@ -169,7 +170,7 @@ public class ShiftClient {
                     break;
                 case 5:
                     try{
-                        System.out.println("Enter Date to fetch all shifts of tht date");
+                        System.out.println("Enter Date to fetch all shifts of tht date in format dd/mm/YYYY : ");
                         String date = scanner.nextLine();
                         LocalDate date1 = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
                        List<Shifts> shifts= ServiceHelper.shiftsService.getAllShiftsByDate(date1);

@@ -38,7 +38,7 @@ public class StaffRoleClient {
                         System.out.println("\t"+x.getSr_id()+"\t\t\t"+x.getRole());
                     });
                     System.out.println("\n---------------------------------------------------------------------------------");
-                    System.out.println("Enter Role Id to update");
+                    System.out.println("Enter Staff Role Id to update");
                     int id = scanner.nextInt();
                     scanner.nextLine();
 

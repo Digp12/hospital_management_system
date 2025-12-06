@@ -45,7 +45,7 @@ public class StaffRepositoryImpl extends DbConfiguration implements StaffReposit
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        return List.of();
+        return null;
     }
 
     @Override
@@ -55,6 +55,7 @@ public class StaffRepositoryImpl extends DbConfiguration implements StaffReposit
             preparedStatement=connection.prepareStatement("select * from staff where d_id=?");
             preparedStatement.setInt(1,department.getD_id());
             resultSet=preparedStatement.executeQuery();
+            if(resultSet.next()){
             while(resultSet.next()){
                 Staff staff = new Staff();
                 staff.setStaff_id(resultSet.getInt("s_id"));
@@ -75,9 +76,9 @@ public class StaffRepositoryImpl extends DbConfiguration implements StaffReposit
                 staff.setStatus(Status.valueOf(resultSet.getString("s_status")));
                 staff.setJoinDate(resultSet.getDate("join_date").toLocalDate());
                 staffList.add(staff);
-
             }
             return staffList;
+            }return null;
 
         }catch(Exception e){
             System.out.println(e.getMessage());
@@ -92,6 +93,7 @@ public class StaffRepositoryImpl extends DbConfiguration implements StaffReposit
             preparedStatement=connection.prepareStatement("select * from staff where r_id=?");
             preparedStatement.setInt(1,staffRole.getSr_id());
             resultSet=preparedStatement.executeQuery();
+            if(resultSet.next()){
             while(resultSet.next()){
                 Staff staff = new Staff();
                 staff.setStaff_id(resultSet.getInt("s_id"));
@@ -115,7 +117,8 @@ public class StaffRepositoryImpl extends DbConfiguration implements StaffReposit
 
                 staffList.add(staff);
             }
-            return staffList;
+            return staffList;}
+            return null;
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
@@ -171,6 +174,7 @@ public class StaffRepositoryImpl extends DbConfiguration implements StaffReposit
         try{
             preparedStatement=connection.prepareStatement("delete from staff where s_id=?");
             preparedStatement.setInt(1,id);
+            return preparedStatement.executeUpdate()>0;
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

@@ -19,7 +19,7 @@ public class StaffClient {
         do {
             System.out.println("----------------------------------------------------------------------------------------------------------");
             System.out.println("Welcome To Staff Management Process\n\nEnter Your Choice");
-            System.out.println("1. Add New Staff\n2. Update Staff\n3. Delete Staff\n4. Show All Staff\n5. show All Staff By Department \n6. show All Staff By Staff Role \n 7. Exit");
+            System.out.println("1. Add New Staff\n2. Update Staff\n3. Delete Staff\n4. Show All Staff\n5. show All Staff By Department \n6. show All Staff By Staff Role \n7. Exit");
             int choice = scanner.nextInt();
             scanner.nextLine();
             switch (choice) {
@@ -54,7 +54,7 @@ public class StaffClient {
                         String address = scanner.nextLine();
                         System.out.println("Enter Staff Status");
                         Status status = Status.valueOf(scanner.nextLine());
-                        System.out.print("Please enter a date in the format dd/mm/YYYY :");
+                        System.out.print("Please enter a Joining date in the format dd/mm/YYYY :");
                         String date = scanner.nextLine();
 
                         LocalDate userDate = LocalDate.parse(date,  DateTimeFormatter.ofPattern("dd/MM/yyyy"));
@@ -80,10 +80,21 @@ public class StaffClient {
                     break;
                 case 2:
                     try {
+                        List<Staff> staffs = ServiceHelper.staffService.getAllStaff();
+                        System.out.println("Staff Id\t Staff Name\t\t Staff Gender\t Staff Phone\t Staff Email\t\t Staff Address\t\t Staff Status\t Staff Role Id\t Staff Role\t Department Id\t Department ");
+                        if (staffs != null) {
+                            staffs.forEach(x -> System.out.println("\t"+x.getStaff_id()+"\t\t"+x.getName()+"\t\t\t"+x.getGender()+"\t\t"+x.getPhone()+"\t\t"+x.getEmail()+"\t\t"+x.getAddress()+"\t\t"+x.getStatus()
+                                    +"\t\t\t"+x.getStaffRole().getSr_id()+"\t\t\t"+x.getStaffRole().getRole()+"\t\t\t"+x.getDepartment().getD_id()+"\t\t"+x.getDepartment().getName()+"\t"));
+                        }
                         System.out.println("Enter Staff Id to Update");
                         int id = scanner.nextInt();
                         scanner.nextLine();
-
+                        Staff staff = ServiceHelper.staffService.getStaffById(id);
+                        if (staff != null) {
+                            System.out.println("You are going to update following staff role");
+                            System.out.println("\t"+staff.getStaff_id()+"\t\t"+staff.getName()+"\t\t\t"+staff.getGender()+"\t\t"+staff.getPhone()+"\t\t"+staff.getEmail()+"\t\t"+staff.getAddress()+"\t\t"+staff.getStatus()
+                                    +"\t\t\t"+staff.getStaffRole().getSr_id()+"\t\t\t"+staff.getStaffRole().getRole()+"\t\t\t"+staff.getDepartment().getD_id()+"\t\t"+staff.getDepartment().getName()+"\t");
+                        }
                         System.out.println("Enter Updated Department Name");
                         String deptname = scanner.nextLine();
 
@@ -100,7 +111,7 @@ public class StaffClient {
                             System.out.println("Staff  Updated Role Not Found... Try Again");
                             continue;
                         }
-                        System.out.print("Please enter a date in the format dd/mm/YYYY :");
+                        System.out.println("Please enter a date in the format dd/mm/YYYY :");
                         String date = scanner.nextLine();
 
                         LocalDate userDate = LocalDate.parse(date,  DateTimeFormatter.ofPattern("dd/MM/yyyy"));
@@ -117,7 +128,7 @@ public class StaffClient {
                         System.out.println("Enter Updated Staff Status");
                         Status status = Status.valueOf(scanner.nextLine());
 
-                        Staff staff = new Staff(id,staffname,staffgender,staffphonenumber,staffemail,address,userDate,status,department,staffRole);
+                         staff = new Staff(id,staffname,staffgender,staffphonenumber,staffemail,address,userDate,status,department,staffRole);
 
                         if (ServiceHelper.staffService.updateStaff(staff)) {
                             System.out.println("Staff Updated Successfully...");
@@ -145,9 +156,10 @@ public class StaffClient {
                 case 4:
                     try {
                         List<Staff> staffs = ServiceHelper.staffService.getAllStaff();
+                        System.out.println("Staff Id\t Staff Name\t\t Staff Gender\t Staff Phone\t Staff Email\t\t Staff Address\t\t Staff Status\t Staff Role Id\t Staff Role\t Department Id\t Department ");
                         if (staffs != null) {
-                            staffs.forEach(x -> System.out.println(x.getStaff_id()+"\t"+x.getName()+"\t"+x.getPhone()+"\t"+x.getEmail()+"\t"+x.getAddress()
-                                    +"\t"+x.getStaffRole().getSr_id()+"\t"+x.getStaffRole().getRole()+"\t"+x.getDepartment().getD_id()+"\t"+x.getDepartment().getName()+"\t"));
+                            staffs.forEach(x -> System.out.println("\t"+x.getStaff_id()+"\t\t"+x.getName()+"\t\t\t"+x.getGender()+"\t\t"+x.getPhone()+"\t\t"+x.getEmail()+"\t\t"+x.getAddress()+"\t\t"+x.getStatus()
+                                    +"\t\t\t"+x.getStaffRole().getSr_id()+"\t\t\t"+x.getStaffRole().getRole()+"\t\t\t"+x.getDepartment().getD_id()+"\t\t"+x.getDepartment().getName()+"\t"));
                         } else {
                             System.out.println("Staff Table is empty...first add somthing");
                         }
@@ -167,10 +179,12 @@ public class StaffClient {
                             continue;
                         }
                         List<Staff> staffs = ServiceHelper.staffService.getAllStaffByDepartment(department);
+                        System.out.println("Staff Id\t Staff Name\t\t Staff Gender\t Staff Phone\t Staff Email\t\t Staff Address\t\t Staff Status\t Staff Role Id\t Staff Role\t Department Id\t Department ");
                         if (staffs != null) {
-                            staffs.forEach(x -> System.out.println(x.getStaff_id()+"\t"+x.getName()+"\t"+x.getPhone()+"\t"+x.getEmail()+"\t"+x.getAddress()
-                                    +"\t"+x.getStaffRole().getSr_id()+"\t"+x.getStaffRole().getRole()+"\t"+x.getDepartment().getD_id()+"\t"+x.getDepartment().getName()+"\t"));                        } else {
-                            System.out.println("Staffs are not available in this Deparment...");
+                            staffs.forEach(x -> System.out.println("\t"+x.getStaff_id()+"\t\t"+x.getName()+"\t\t\t"+x.getGender()+"\t\t"+x.getPhone()+"\t\t"+x.getEmail()+"\t\t"+x.getAddress()+"\t\t"+x.getStatus()
+                                    +"\t\t\t"+x.getStaffRole().getSr_id()+"\t\t\t"+x.getStaffRole().getRole()+"\t\t\t"+x.getDepartment().getD_id()+"\t\t"+x.getDepartment().getName()+"\t"));
+                        } else {
+                            System.out.println("Staffs are not available in this Department...first add somthing");
                         }
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
@@ -186,10 +200,12 @@ public class StaffClient {
                             continue;
                         } else {
                             List<Staff> staffs = ServiceHelper.staffService.getAllStaffByRole(staffRole);
+                            System.out.println("Staff Id\t Staff Name\t\t Staff Gender\t Staff Phone\t Staff Email\t\t Staff Address\t\t Staff Status\t Staff Role Id\t Staff Role\t Department Id\t Department ");
                             if (staffs != null) {
-                                staffs.forEach(x -> System.out.println(x.getStaff_id()+"\t"+x.getName()+"\t"+x.getPhone()+"\t"+x.getEmail()+"\t"+x.getAddress()
-                                        +"\t"+x.getStaffRole().getSr_id()+"\t"+x.getStaffRole().getRole()+"\t"+x.getDepartment().getD_id()+"\t"+x.getDepartment().getName()+"\t"));                            } else {
-                                System.out.println("Staff are not available in this Staff Role...");
+                                staffs.forEach(x -> System.out.println("\t"+x.getStaff_id()+"\t\t"+x.getName()+"\t\t\t"+x.getGender()+"\t\t"+x.getPhone()+"\t\t"+x.getEmail()+"\t\t"+x.getAddress()+"\t\t"+x.getStatus()
+                                        +"\t\t\t"+x.getStaffRole().getSr_id()+"\t\t\t"+x.getStaffRole().getRole()+"\t\t\t"+x.getDepartment().getD_id()+"\t\t"+x.getDepartment().getName()+"\t"));
+                            } else {
+                                System.out.println("Staffs are not available in this StaffRole...First add somthing");
                             }
                         }
                     } catch (Exception e) {

@@ -59,15 +59,18 @@ public class ShiftsRepositoryImpl extends DbConfiguration implements ShiftsRepos
     @Override
     public Shifts getShiftById(int id) {
         try{
-            preparedStatement = connection.prepareStatement("select * from shifts where s_id = ?");
+            preparedStatement = connection.prepareStatement("select * from shifts where shift_id = ?");
             preparedStatement.setInt(1, id);
             resultSet = preparedStatement.executeQuery();
            if (resultSet.next()) {
                Shifts shifts = new Shifts();
-               shifts.setShiftId(resultSet.getInt("s_id"));
+               shifts.setShiftId(resultSet.getInt("shift_id"));
                shifts.setShiftDate((resultSet.getDate("shift_date").toLocalDate()));
                shifts.setStartTime((resultSet.getTime("start_time").toLocalTime()));
                shifts.setEndTime((resultSet.getTime("end_time").toLocalTime()));
+               Staff staff = ServiceHelper.staffService.getStaffById(resultSet.getInt("s_id"));
+               shifts.setStaff(staff);
+               shifts.setShiftType(ShiftType.valueOf(resultSet.getString("shift_type")));
                return shifts;
            }
            else  return null;
@@ -81,7 +84,7 @@ public class ShiftsRepositoryImpl extends DbConfiguration implements ShiftsRepos
     @Override
     public boolean deleteShiftById(int id) {
         try{
-            preparedStatement = connection.prepareStatement("delete from shifts where s_id = ?");
+            preparedStatement = connection.prepareStatement("delete from shifts where shift_id = ?");
             preparedStatement.setInt(1, id);
             return preparedStatement.executeUpdate()>0;
         }catch (Exception e){
@@ -99,10 +102,13 @@ public class ShiftsRepositoryImpl extends DbConfiguration implements ShiftsRepos
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 Shifts shifts = new Shifts();
-                shifts.setShiftId(resultSet.getInt("s_id"));
+                shifts.setShiftId(resultSet.getInt("shift_id"));
                 shifts.setShiftDate((resultSet.getDate("shift_date").toLocalDate()));
                 shifts.setStartTime((resultSet.getTime("start_time").toLocalTime()));
                 shifts.setEndTime((resultSet.getTime("end_time").toLocalTime()));
+                Staff staf = ServiceHelper.staffService.getStaffById(resultSet.getInt("s_id"));
+                shifts.setStaff(staf);
+                shifts.setShiftType(ShiftType.valueOf(resultSet.getString("shift_type")));
                 return shifts;
             }
         }catch (Exception e){
@@ -125,7 +131,7 @@ public class ShiftsRepositoryImpl extends DbConfiguration implements ShiftsRepos
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Shifts shifts = new Shifts();
-                shifts.setShiftId(resultSet.getInt("s_id"));
+                shifts.setShiftId(resultSet.getInt("shift_id"));
                 shifts.setShiftDate((resultSet.getDate("shift_date").toLocalDate()));
                 shifts.setStartTime((resultSet.getTime("start_time").toLocalTime()));
                 shifts.setEndTime((resultSet.getTime("end_time").toLocalTime()));

@@ -34,7 +34,7 @@ public class ShiftsServiceImpl implements ShiftsService {
 
     @Override
     public Shifts getShiftByStaffAndDate(Staff staff, LocalDate date) {
-        return getShiftByStaffAndDate(staff, date);
+        return shiftsRepository.getShiftByStaffAndDate(staff, date);
     }
 
     @Override
