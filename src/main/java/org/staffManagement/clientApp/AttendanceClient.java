@@ -36,6 +36,12 @@ public class AttendanceClient {
                     System.out.println(b ? "Attendance Recorded Successfully..." : "Attendance Not Recorded Something went Wrong...");
                     break;
                 case 2:
+                    List<Attendance> list = ServiceHelper.attendanceService.showAllAttendance();
+                    System.out.println("\tId\tStaff Id\t\tDate\t\tIn Time\t\tOut Time\tStatus");
+                    System.out.println("------------------------------------------------------------------------------------");
+                    for (Attendance at : list) {
+                        System.out.println("\t"+at.getId() + "\t\t" + at.getStaff_id() + "\t\t" + at.getDate() + "\t\t" + at.getIn_time() + "\t\t" + at.getOut_time() + "\t\t" + at.getStatus());
+                    }
                     System.out.println("Enter attendance id for update record ");
                     int a_id2 = sc.nextInt();
                     Attendance adt = ServiceHelper.attendanceService.getAttendanceById(a_id2);
@@ -67,9 +73,11 @@ public class AttendanceClient {
                     System.out.println(b ? "Record deleted..." : "something went wrong...");
                     break;
                 case 4:
-                    List<Attendance> list = ServiceHelper.attendanceService.showAllAttendance();
-                    for (Attendance at : list) {
-                        System.out.println(at.getId() + "\t" + at.getStaff_id() + "\t" + at.getDate() + "\t" + at.getIn_time() + "\t" + at.getOut_time() + "\t" + at.getStatus());
+                    List<Attendance> list2 = ServiceHelper.attendanceService.showAllAttendance();
+                    System.out.println("\tId\tStaff Id\t\tDate\t\tIn Time\t\tOut Time\tStatus");
+                    System.out.println("------------------------------------------------------------------------------------");
+                    for (Attendance at : list2) {
+                        System.out.println("\t"+at.getId() + "\t\t" + at.getStaff_id() + "\t\t" + at.getDate() + "\t\t" + at.getIn_time() + "\t\t" + at.getOut_time() + "\t\t" + at.getStatus());
                     }
                     break;
                 case 5:
